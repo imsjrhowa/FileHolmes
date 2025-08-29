@@ -14,6 +14,9 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
+# Version information
+VERSION = "1.0"
+
 def get_files_in_folder(folder_path, case_sensitive=True):
     """Get all files in a folder (recursively) and return their relative paths."""
     files = set()
@@ -75,6 +78,7 @@ def save_missing_files_to_file(missing_files, folder1, folder2, case_sensitive=T
             f.write("MISSING FILES REPORT\n")
             f.write("=" * 80 + "\n")
             f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"FileHolmes Version: {VERSION}\n")
             f.write(f"Source folder: {folder1}\n")
             f.write(f"Target folder: {folder2}\n")
             f.write(f"Case sensitive: {'Yes' if case_sensitive else 'No'}\n")
@@ -107,13 +111,15 @@ def save_missing_files_to_file(missing_files, folder1, folder2, case_sensitive=T
 def main():
     # Set up argument parser
     parser = argparse.ArgumentParser(
-        description="Compare two folders and find missing files",
+        description=f"Compare two folders and find missing files (v{VERSION})",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
+        epilog=f"""
 Examples:
   python FileHolmes.py C:\\Source C:\\Backup
   python FileHolmes.py C:\\Source C:\\Backup --case-sensitive
   python FileHolmes.py . "C:\\Backup" --case-sensitive
+
+FileHolmes v{VERSION} - Folder comparison tool
         """
     )
     
@@ -121,6 +127,7 @@ Examples:
     parser.add_argument('folder2', help='Target folder (check if files exist here)')
     parser.add_argument('--case-sensitive', action='store_true', 
                        help='Enable case-sensitive file name comparison (default: case-insensitive)')
+    parser.add_argument('--version', action='version', version=f'FileHolmes v{VERSION}')
     
     args = parser.parse_args()
     
@@ -129,7 +136,7 @@ Examples:
     case_sensitive = args.case_sensitive
     
     print("=" * 60)
-    print("Folder Compare Tool")
+    print(f"Folder Compare Tool - FileHolmes v{VERSION}")
     print("=" * 60)
     print(f"Source folder: {folder1}")
     print(f"Target folder: {folder2}")
