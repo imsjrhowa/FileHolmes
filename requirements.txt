@@ -1,0 +1,7 @@
+# Build dependencies for FileHolmes
+pyinstaller>=5.0.0
+
+# Optional: for development
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=5.0.0
