@@ -101,7 +101,7 @@ def save_missing_files_to_file(missing_files, folder1, folder2, case_sensitive=T
             f.write("END OF REPORT\n")
             f.write("=" * 80 + "\n")
         
-        print(f"✓ Missing files report saved to: missing_files.txt")
+        print(f"Missing files report saved to: missing_files.txt")
         return True
         
     except Exception as e:

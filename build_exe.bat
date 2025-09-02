@@ -49,7 +49,7 @@ echo Building executable...
 echo.
 
 REM Build with PyInstaller
-pyinstaller --onefile --name "FileHolmes" --console FileHolmes.py
+python -m PyInstaller --onefile --name "FileHolmes" --console FileHolmes.py
 
 if %ERRORLEVEL% EQU 0 (
     echo.
